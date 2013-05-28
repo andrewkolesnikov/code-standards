@@ -1,0 +1,108 @@
+section(id="accessibility")
+	div(class="intro has-icon")
+
+	:markdown
+		# Accessibility
+
+		This is a rather broad subject, one that is apart of everything that goes into a web site. [Accessibility](http://www.w3.org/WAI/) has to do with everything from how content is written to the structure of HTML markup, appearance and styling, progressive enhancement and graceful degradation, plus how semantic and meaningful your code is when it is read by browsers.
+
+
+		We bring people and brands together, like never before. It is important that we reach as many people possible to provide new and exciting 'like never before' experiences. Some areas to consider for better accessibility during the development of any project are:
+
+		*   Markup and semantics
+		*   Usability of the interface, via keyboard and with JS disabled
+		*   Correct usage of tags, attributes and descriptions
+		*   Text content for all non-text content
+		*   Summary content for screen-readers
+
+		These areas are all closely related so it can be easier to break them down based on project types. Here are some things that should be done to achieve an accessible web page:
+
+		### Skip Navigation
+
+		If your site has navigation elements before the main content, provide a "Skip to main content" link for screen readers. This is a link that is usually hidden using CSS, but will be available to a screen reader to jump past the navigation and go straight to the content. Sometimes it can be helpful to include a skip link to the footer or sitemap.
+
+						<textarea class="brush:css">
+						.skipnav { text-align: left; }
+						.skipnav a {
+							position: absolute;
+							left: -10000px; 
+							width: 1px; 
+							height: 1px; 
+							overflow: hidden;
+						}
+						.skipnav a:focus, .skipnav a:active { 
+							position: static; 
+							left: 0; 
+							width: auto; 
+							height: auto; 
+							overflow: visible; 
+							text-decoration: underline;
+						}
+						</textarea>
+
+						<textarea class="brush:html">
+							<div class="skipnav">
+								[Skip to main content](#maincontent)
+								[Skip to footer site map](#sitemap)
+							</div>
+						</textarea>
+
+		### Tab Index
+
+		The tab index of a document starts with the first link in the document and works through them all in the source order until the end. This is often unusable and counter-intuitive to how elements appear on screen. So ensure that the tabbing order of links and active elements is logical, by using the `tabindex` attribute. Form elements should be tabbed through in the order a user expects to complete it, not necessarily in the order of the tags in the HTML.
+
+		### Acronyms/Abbreviations
+
+		If your content uses abbreviations or acronyms, they must be expanded using `abbr` and `acronym` tags/
+
+		### Images.
+
+				<p>
+
+		All images must have an `alt` attribute. Alt attributes should be meaningful and describe the contents of the picture. If the image is purely decorative, alt attributes should be marked as empty using `alt=""`. Don't put something like `alt="This image is for decoration only"` as it will be read by the screen-reader and is really annoying.
+
+		Do not use images for spacing or other similar effects. This should be done using CSS.
+
+		### Flash and Image Replacement
+
+		Always use backup HTML content for flash. All promo images should use CSS-based image replacement instead of alt tags.
+
+						<figure class="preCode">Fallback non-flash version:</figure>
+						<textarea class="brush:html">
+						</textarea>
+
+						<textarea class="brush:css">
+							a#morethan { background:url(/promos/nikegame.jpg) no-repeat; width: 200px; height: 100px; text-indent: -999px; overflow:hidden; display:block; }
+						</textarea>
+
+		Having a fallback for flash and images will also improve SEO.
+
+		### Tables
+
+		Tables should be used purely for tabular data. They should not be used for presentational or layout purposes. When using tables:
+
+		*   Use the `th` element for table headers. If the headers themselves are abbreviated, use the `abbr` attribute to expand them.
+		*   For complex tables, use the `scope` attribute on table headers to indicate what they pertain to.
+
+		### Color
+
+		Use of color should fulfill the following:
+
+		*   Text should be readable with high contrast. Either use a light background with dark text or vice-versa. Very light text on a light background is virtually impossible to read for most people, it can be even worse for those with color-blindness.
+		*   Do not use red and green together to make distinctions between key functionality - a small percentage of people will not be able to perceive the distinction.
+
+		The [WAI site contains a list of color-blindness tools](http://www.w3.org/WAI/ER/existingtools.html) that let you see sites as people with different types of colorblindness would.
+
+		### JavaScript
+
+		Pages should still be functional with JavaScript disabled. Applications should degrade gracefully, or when possible make use of [cross-browser polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills) to add functionality to older browsers to enable features that may not be supported.
+
+		### Section 508
+
+		Interfaces developed by Isobar should meet Section 508 standards.
+
+		*   [Section 508 Standards for intranet and internet information and applications](http://www.section508.gov/index.cfm?FuseAction=Content&ID=12#Web).
+
+		### Accessibility Checklist
+
+		Here is the [W3C checklist](http://www.w3.org/TR/WCAG10/full-checklist.html) of checkpoints for accessibility. Interfaces developed by Isobar should meet Priority 1 guidelines - [The WCAG 1.0 Guidelines](http://www.w3.org/TR/1999/WAI-WEBCONTENT-19990505/#Guidelines).
